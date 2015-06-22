@@ -14,6 +14,7 @@ namespace FeralTic.DX11.Resources
         public DX11SliceRenderTarget[] SliceRTV { get; protected set; }
 
         public RenderTargetView RTV { get; protected set; }
+        public UnorderedAccessView UAV { get; protected set; }
 
         public DX11CubeRenderTarget(DX11RenderContext context, int size, SampleDescription sd, Format format, bool genMipMaps, int mmLevels)
         {
@@ -69,7 +70,7 @@ namespace FeralTic.DX11.Resources
             };
 
             this.RTV = new RenderTargetView(context.Device, this.Resource, rtvd);
-
+            this.UAV = new UnorderedAccessView(context.Device, this.Resource);
             this.SRV = new ShaderResourceView(context.Device, this.Resource, svd);
 
             for (int i = 0; i < 6; i++)

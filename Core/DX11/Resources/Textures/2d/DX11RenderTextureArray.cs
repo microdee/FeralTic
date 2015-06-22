@@ -13,6 +13,7 @@ namespace FeralTic.DX11.Resources
     public class DX11RenderTextureArray : DX11Texture2D, IDX11RenderTargetView
     {
         public RenderTargetView RTV { get; protected set; }
+        public UnorderedAccessView UAV { get; protected set; }
 
         public int ElemCnt { get { return desc.ArraySize; } }
 
@@ -58,6 +59,7 @@ namespace FeralTic.DX11.Resources
 
             this.SRV = new ShaderResourceView(context.Device, this.Resource, srvd);
             this.RTV = new RenderTargetView(context.Device, this.Resource, rtd);
+            this.UAV = new UnorderedAccessView(context.Device, this.Resource);
 
             this.desc = texBufferDesc;
 
